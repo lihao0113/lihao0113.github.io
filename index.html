@@ -143,6 +143,172 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-sldp哈哈" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- <div align='center' ><font size='70'>版本说明</font></div> -->
+
+
+<p>###一、背景</p>
+<p>&emsp;&emsp;手淘转化回传sldp参数为空时，http无响应结果</p>
+<p>###二、主功能点说明<br>修复 1.sldp为空时，不再发送第三方请求 2.请求第三方的方法单独处理异常</p>
+<p>###三、相关数据库改动</p>
+<p>&emsp;&emsp;无</p>
+<p>###四、相关配置项改动</p>
+<p>###五、回归范围（包含其他组件）</p>
+<p>&emsp;&emsp;无</p>
+<p>###六、联调说明</p>
+<p>&emsp;&emsp;无</p>
+<p>###七、已知问题列列表</p>
+<p>&emsp;&emsp;无</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/29/sldp%E5%93%88%E5%93%88/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-概率回传" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- <div align='center' ><font size='70'>版本说明</font></div> -->
+
+
+<p>###一、背景</p>
+<p>&emsp;&emsp;新增链接用于放入第三方平台的点击监测中，该链接用于收到点击后，按照一定概率仿造ocpx回传给第三方平台。</p>
+<p>###二、主功能点说明<br>接口说明：<br>路径：/back/rck?callback=&amp;rid=&amp;channel=&amp;key=&amp;value=<br>示例：/back/rck?callback=http%3a%2f%2frtb-test.voiceads.cn%2ftracker%3fsi%3d11&amp;rid=500&amp;channel=xf001&amp;key=at&amp;value=active<br>参数说明：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数描述</th>
+<th>参数类型</th>
+<th>必填</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>callback</td>
+<td>回传的链接</td>
+<td>string</td>
+<td>是</td>
+</tr>
+<tr>
+<td>rid</td>
+<td>取值返回[0,600]，表示回传的概率，概率真实为rid/600,如回调概率为0.3则rid为180</td>
+<td>int</td>
+<td>是</td>
+</tr>
+<tr>
+<td>channel</td>
+<td>三方渠道，如toutiao</td>
+<td>string</td>
+<td>否</td>
+</tr>
+<tr>
+<td>key</td>
+<td>回传三方的行为key，如event_type</td>
+<td>string</td>
+<td>是</td>
+</tr>
+<tr>
+<td>value</td>
+<td>回传三方的行为value，如1</td>
+<td>string</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<p>实现逻辑说明：<br>1.解析参数，校验参数是否合法<br>2.对callback进行decode处理<br>3.将key和value以callback&amp;key=value的方式拼接到callback中<br>4.根据链接中的rid概率来确定当前是否进行回调，若判断回调则httpGet这个callback，判断不回调则处理结束</p>
+<p>数据记录到influx，<br>influx表：<br>rate.click.count.total ：记录接口所有的数据总数<br>rate.click.invalid.total ：记录接口上报的参数异常的数据总数<br>rate.callback.exception.total ：记录回调异常的总数<br>rate.callback.count.total ： 记录回调次数总数</p>
+<p>###三、相关数据库改动</p>
+<p>&emsp;&emsp;无</p>
+<p>###四、相关配置项改动</p>
+<p>###五、回归范围（包含其他组件）</p>
+<p>&emsp;&emsp;无</p>
+<p>###六、联调说明</p>
+<p>&emsp;&emsp;无</p>
+<p>###七、已知问题列列表</p>
+<p>&emsp;&emsp;无</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/29/%E6%A6%82%E7%8E%87%E5%9B%9E%E4%BC%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
