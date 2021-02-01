@@ -6,7 +6,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.hcloud.work">
-  <title>tt | 吾之初心</title>
+  <title>SpringBoot+Mybatis+druid实现多数据源 | 吾之初心</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
   <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
@@ -23,18 +23,21 @@
         border-left-color: #6d6d6d;    /*左边框颜色*/
     }
   </style>
-  <meta name="description" content="记录学习工作中的知识，加以总结归纳">
+  <meta name="description" content="从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）1.背景最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。在做的过程中整理了这篇文章，有需要的朋友可以看看。 1.构建springboot工程1.使用编译器构建个Springboot工程，不多做介绍。2.加入以下依赖：连接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tt">
-<meta property="og:url" content="http://blog.hcloud.work/2021/01/29/tt/index.html">
+<meta property="og:title" content="SpringBoot+Mybatis+druid实现多数据源">
+<meta property="og:url" content="http://blog.hcloud.work/2021/01/29/SpringBoot-Mybatis-druid%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/index.html">
 <meta property="og:site_name" content="吾之初心">
-<meta property="og:description" content="记录学习工作中的知识，加以总结归纳">
+<meta property="og:description" content="从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）1.背景最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。在做的过程中整理了这篇文章，有需要的朋友可以看看。 1.构建springboot工程1.使用编译器构建个Springboot工程，不多做介绍。2.加入以下依赖：连接">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-29T07:39:35.000Z">
-<meta property="article:modified_time" content="2021-01-29T07:39:35.721Z">
+<meta property="og:image" content="https://gitee.com/lihao0113/photos/raw/master/1611909872.jpg">
+<meta property="og:image" content="https://gitee.com/lihao0113/photos/raw/master/1612162466.jpg">
+<meta property="article:published_time" content="2021-01-29T08:12:46.000Z">
+<meta property="article:modified_time" content="2021-02-01T07:00:12.758Z">
 <meta property="article:author" content="hao li">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/lihao0113/photos/raw/master/1611909872.jpg">
   
     <link rel="alternative" href="/atom.xml" title="吾之初心" type="application/atom+xml">
   
@@ -158,27 +161,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-tt" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-SpringBoot-Mybatis-druid实现多数据源" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      tt
+      SpringBoot+Mybatis+druid实现多数据源
     </h1>
   
 
         
-        <a href="/2021/01/29/tt/" class="archive-article-date">
-  	<time datetime="2021-01-29T07:39:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-29</time>
+        <a href="/2021/01/29/SpringBoot-Mybatis-druid%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/" class="archive-article-date">
+  	<time datetime="2021-01-29T08:12:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="从零开始，Springboot-mybatis-druid实现多数据源（AOP动态切换）"><a href="#从零开始，Springboot-mybatis-druid实现多数据源（AOP动态切换）" class="headerlink" title="从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）"></a>从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）</h2><h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h3><p>最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。<br>在做的过程中整理了这篇文章，有需要的朋友可以看看。</p>
+<h3 id="1-构建springboot工程"><a href="#1-构建springboot工程" class="headerlink" title="1.构建springboot工程"></a>1.构建springboot工程</h3><p>1.使用编译器构建个Springboot工程，不多做介绍。<br>2.加入以下依赖：连接池、mysql、mybatis、aspectj。</p>
+<pre><code>    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+        &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;
+        &lt;version&gt;1.1.10&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+        &lt;scope&gt;runtime&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+   &lt;dependency&gt;
+        &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+        &lt;version&gt;2.1.3&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+        &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+        &lt;version&gt;1.9.5&lt;/version&gt;
+    &lt;/dependency&gt;</code></pre>
+<h3 id="2-配置数据库信息"><a href="#2-配置数据库信息" class="headerlink" title="2.配置数据库信息"></a>2.配置数据库信息</h3><p>工程搭建完毕后，添加多数据库的配置，本文以主从两个库的配置为例。</p>
+<p>配置如下：<br><img src="https://gitee.com/lihao0113/photos/raw/master/1611909872.jpg"><br>从库在配置添加了slave用于区分标识。</p>
+<h3 id="3-工程多数据源整合"><a href="#3-工程多数据源整合" class="headerlink" title="3.工程多数据源整合"></a>3.工程多数据源整合</h3><p>第一步：定义多数据源枚举类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public enum DBType &#123;</span><br><span class="line">    DEFAULT(&quot;default&quot;),</span><br><span class="line">    SLAVE(&quot;slave&quot;);</span><br><span class="line"></span><br><span class="line">    @Getter</span><br><span class="line">    private String value;</span><br><span class="line"></span><br><span class="line">    DBType(String value) &#123;</span><br><span class="line">        this.value &#x3D; value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二步：定义一个类，使用ThreadLocal将数据源维护起来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class DbContextHolder &#123;</span><br><span class="line"></span><br><span class="line">    private static final ThreadLocal&lt;String&gt; contextHolder &#x3D; new ThreadLocal&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 设置数据源</span><br><span class="line">     *</span><br><span class="line">     * @param dbType</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static void setDbType(DBType dbType) &#123;</span><br><span class="line">        contextHolder.set(dbType.getValue());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 取得当前数据源</span><br><span class="line">     *</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static String getDbType() &#123;</span><br><span class="line">        return contextHolder.get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 清除上下文数据</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static void clearDbType() &#123;</span><br><span class="line">        contextHolder.remove();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>第三步：使用AOP，定义切点获取对应的数据源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@Order(value &#x3D; -1000)</span><br><span class="line">@Slf4j</span><br><span class="line">@Aspect</span><br><span class="line">public class DataSourceSwitchAspect &#123;</span><br><span class="line"></span><br><span class="line">    @Pointcut(&quot;execution(* com.test.dao.def.*.*(..))&quot;)</span><br><span class="line">    private void defAspect() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Pointcut(&quot;execution(* com.test.dao.slave.*.*(..))&quot;)</span><br><span class="line">    private void slaveAspect() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Before(&quot;defAspect()&quot;)</span><br><span class="line">    public void def() &#123;</span><br><span class="line">        DbContextHolder.setDbType(DBType.DEFAULT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Before(&quot;slaveAspect()&quot;)</span><br><span class="line">    public void info() &#123;</span><br><span class="line">        DbContextHolder.setDbType(DBType.SLAVE);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第四步：配置数据源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class DataSourceConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean(name &#x3D; &quot;default&quot;)</span><br><span class="line">    @ConfigurationProperties(prefix &#x3D; &quot;spring.datasource&quot;)</span><br><span class="line">    public DataSource def() &#123;</span><br><span class="line">        return new DruidDataSource();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean(name &#x3D; &quot;slave&quot;)</span><br><span class="line">    @ConfigurationProperties(prefix &#x3D; &quot;spring.datasource.slave&quot;)</span><br><span class="line">    public DataSource slave() &#123;</span><br><span class="line">        return DruidDataSourceBuilder.create().build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 动态数据源配置</span><br><span class="line">     *</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Bean</span><br><span class="line">    @Primary</span><br><span class="line">    public DataSource multipleDataSource(@Qualifier(&quot;default&quot;) DataSource def,</span><br><span class="line">                                         @Qualifier(&quot;slave&quot;) DataSource slave) &#123;</span><br><span class="line">        DynamicDataSource dynamicDataSource &#x3D; new DynamicDataSource();</span><br><span class="line">        Map&lt;Object, Object&gt; targetDataSources &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">        targetDataSources.put(DBType.SLAVE.getValue(), slave);</span><br><span class="line">        targetDataSources.put(DBType.DEFAULT.getValue(), def);</span><br><span class="line">        dynamicDataSource.setTargetDataSources(targetDataSources);</span><br><span class="line">        dynamicDataSource.setDefaultTargetDataSource(def);</span><br><span class="line">        return dynamicDataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean(&quot;sqlSessionFactory&quot;)</span><br><span class="line">    public SqlSessionFactory sqlSessionFactory() throws Exception &#123;</span><br><span class="line">        MybatisSqlSessionFactoryBean sqlSessionFactory &#x3D; new MybatisSqlSessionFactoryBean();</span><br><span class="line">        sqlSessionFactory.setDataSource(multipleDataSource(def(), slave()));</span><br><span class="line">        sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(&quot;classpath:mapper&#x2F;*.xml&quot;));</span><br><span class="line"></span><br><span class="line">        MybatisConfiguration configuration &#x3D; new MybatisConfiguration();</span><br><span class="line">        configuration.setJdbcTypeForNull(JdbcType.NULL);</span><br><span class="line">        configuration.setMapUnderscoreToCamelCase(true);</span><br><span class="line">        configuration.setCacheEnabled(false);</span><br><span class="line">        configuration.setDatabaseId(&quot;mysql&quot;);</span><br><span class="line">        sqlSessionFactory.setConfiguration(configuration);</span><br><span class="line"></span><br><span class="line">        return sqlSessionFactory.getObject();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如下是我的mapper放置的包：<br><img src="https://gitee.com/lihao0113/photos/raw/master/1612162466.jpg"></p>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>综上多数据源整合完毕，基于AOP思想的动态数据源实际是根据定义的切点，通过mapper所在包的不同动态的获取需要使用的数据源来实现的，相对还是较为灵活的。</p>
+
       
 
       
@@ -267,7 +317,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://blog.hcloud.work/2021/01/29/tt/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://blog.hcloud.work/2021/01/29/SpringBoot-Mybatis-druid%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -279,6 +329,20 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2021/01/29/linux%E4%B8%8A%E4%BD%BF%E7%94%A8hexo-github-Page%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          linux上使用hexo+github Page搭建个人博客
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -300,7 +364,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%EF%BC%8CSpringboot-mybatis-druid%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%EF%BC%88AOP%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">1.背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9E%84%E5%BB%BAspringboot%E5%B7%A5%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">1.构建springboot工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.</span> <span class="toc-text">2.配置数据库信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B7%A5%E7%A8%8B%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E6%95%B4%E5%90%88"><span class="toc-number">1.4.</span> <span class="toc-text">3.工程多数据源整合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">4.总结</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
