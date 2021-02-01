@@ -23,17 +23,17 @@
         border-left-color: #6d6d6d;    /*左边框颜色*/
     }
   </style>
-  <meta name="description" content="从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）1.背景最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。在做的过程中整理了这篇文章，有需要的朋友可以看看。 1.构建springboot工程1.使用编译器构建个Springboot工程，不多做介绍。2.加入以下依赖：连接">
+  <meta name="description" content="1.背景最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。在做的过程中整理了这篇文章，有需要的朋友可以看看。 1.构建springboot工程1.使用编译器构建个Springboot工程，不多做介绍。2.加入以下依赖：连接池、mysql、mybatis、aspectj。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot+Mybatis+druid实现多数据源">
 <meta property="og:url" content="http://blog.hcloud.work/2021/01/29/SpringBoot-Mybatis-druid%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/index.html">
 <meta property="og:site_name" content="吾之初心">
-<meta property="og:description" content="从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）1.背景最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。在做的过程中整理了这篇文章，有需要的朋友可以看看。 1.构建springboot工程1.使用编译器构建个Springboot工程，不多做介绍。2.加入以下依赖：连接">
+<meta property="og:description" content="1.背景最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。在做的过程中整理了这篇文章，有需要的朋友可以看看。 1.构建springboot工程1.使用编译器构建个Springboot工程，不多做介绍。2.加入以下依赖：连接池、mysql、mybatis、aspectj。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/lihao0113/photos/raw/master/1611909872.jpg">
 <meta property="og:image" content="https://gitee.com/lihao0113/photos/raw/master/1612162466.jpg">
 <meta property="article:published_time" content="2021-01-29T08:12:46.000Z">
-<meta property="article:modified_time" content="2021-02-01T07:22:35.646Z">
+<meta property="article:modified_time" content="2021-02-01T11:13:36.765Z">
 <meta property="article:author" content="hao li">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -181,7 +181,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="从零开始，Springboot-mybatis-druid实现多数据源（AOP动态切换）"><a href="#从零开始，Springboot-mybatis-druid实现多数据源（AOP动态切换）" class="headerlink" title="从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）"></a>从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）</h2><h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h3><p>最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。<br>在做的过程中整理了这篇文章，有需要的朋友可以看看。</p>
+        <h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h3><p>最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。<br>在做的过程中整理了这篇文章，有需要的朋友可以看看。</p>
 <h3 id="1-构建springboot工程"><a href="#1-构建springboot工程" class="headerlink" title="1.构建springboot工程"></a>1.构建springboot工程</h3><p>1.使用编译器构建个Springboot工程，不多做介绍。<br>2.加入以下依赖：连接池、mysql、mybatis、aspectj。</p>
 <a id="more"></a>
 
@@ -366,7 +366,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%EF%BC%8CSpringboot-mybatis-druid%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%EF%BC%88AOP%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">1.背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9E%84%E5%BB%BAspringboot%E5%B7%A5%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">1.构建springboot工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.</span> <span class="toc-text">2.配置数据库信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B7%A5%E7%A8%8B%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E6%95%B4%E5%90%88"><span class="toc-number">1.4.</span> <span class="toc-text">3.工程多数据源整合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">4.总结</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">1.背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9E%84%E5%BB%BAspringboot%E5%B7%A5%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">1.构建springboot工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">2.配置数据库信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B7%A5%E7%A8%8B%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E6%95%B4%E5%90%88"><span class="toc-number">4.</span> <span class="toc-text">3.工程多数据源整合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">4.总结</span></a></li></ol>
                     </div>
                 </span>
             </div>

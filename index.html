@@ -178,8 +178,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="玩转Java设计模式之单例模式"><a href="#玩转Java设计模式之单例模式" class="headerlink" title="玩转Java设计模式之单例模式"></a>玩转Java设计模式之单例模式</h2><p>单例模式相信大家都不陌生，不管是工作还是面试都很容易碰到单例模式。<br>顾名思义，单例模式就是指生成的对象为同一个对象的一种设计模式，本文主要介绍下单例模式的几种实现方法和对应的特点。</p>
+        <p>顾名思义，单例模式就是指生成的对象为同一个对象的一种设计模式，本文主要介绍下单例模式的几种实现方法和对应的特点。</p>
 <p>单例的实现主要有五种：懒汉式、饿汉式、双检锁、静态内部类、枚举。</p>
+<h5 id="1、懒汉式"><a href="#1、懒汉式" class="headerlink" title="1、懒汉式"></a>1、懒汉式</h5><p>不多说，直接上代码</p>
         
       
 
@@ -242,7 +243,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="从零开始，Springboot-mybatis-druid实现多数据源（AOP动态切换）"><a href="#从零开始，Springboot-mybatis-druid实现多数据源（AOP动态切换）" class="headerlink" title="从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）"></a>从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）</h2><h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h3><p>最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。<br>在做的过程中整理了这篇文章，有需要的朋友可以看看。</p>
+        <h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h3><p>最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。<br>在做的过程中整理了这篇文章，有需要的朋友可以看看。</p>
 <h3 id="1-构建springboot工程"><a href="#1-构建springboot工程" class="headerlink" title="1.构建springboot工程"></a>1.构建springboot工程</h3><p>1.使用编译器构建个Springboot工程，不多做介绍。<br>2.加入以下依赖：连接池、mysql、mybatis、aspectj。</p>
         
       
