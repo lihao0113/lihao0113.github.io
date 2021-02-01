@@ -23,15 +23,15 @@
         border-left-color: #6d6d6d;    /*左边框颜色*/
     }
   </style>
-  <meta name="description" content="记录学习工作中的知识，加以总结归纳">
+  <meta name="description" content="玩转Java设计模式之单例模式单例模式相信大家都不陌生，不管是工作还是面试都很容易碰到单例模式。顾名思义，单例模式就是指生成的对象为同一个对象的一种设计模式，本文主要介绍下单例模式的几种实现方法和对应的特点。 单例的实现主要有五种：懒汉式、饿汉式、双检锁、静态内部类、枚举。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="玩转Java设计模式之单例模式">
 <meta property="og:url" content="http://blog.hcloud.work/2021/02/01/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="吾之初心">
-<meta property="og:description" content="记录学习工作中的知识，加以总结归纳">
+<meta property="og:description" content="玩转Java设计模式之单例模式单例模式相信大家都不陌生，不管是工作还是面试都很容易碰到单例模式。顾名思义，单例模式就是指生成的对象为同一个对象的一种设计模式，本文主要介绍下单例模式的几种实现方法和对应的特点。 单例的实现主要有五种：懒汉式、饿汉式、双检锁、静态内部类、枚举。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-01T07:11:01.000Z">
-<meta property="article:modified_time" content="2021-02-01T07:11:01.550Z">
+<meta property="article:modified_time" content="2021-02-01T11:10:32.637Z">
 <meta property="article:author" content="hao li">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="玩转Java设计模式之单例模式"><a href="#玩转Java设计模式之单例模式" class="headerlink" title="玩转Java设计模式之单例模式"></a>玩转Java设计模式之单例模式</h2><p>单例模式相信大家都不陌生，不管是工作还是面试都很容易碰到单例模式。<br>顾名思义，单例模式就是指生成的对象为同一个对象的一种设计模式，本文主要介绍下单例模式的几种实现方法和对应的特点。</p>
+<p>单例的实现主要有五种：懒汉式、饿汉式、双检锁、静态内部类、枚举。</p>
+<a id="more"></a>
+
+<h5 id="1、懒汉式"><a href="#1、懒汉式" class="headerlink" title="1、懒汉式"></a>1、懒汉式</h5><p>不多说，直接上代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    private static Singleton instance;</span><br><span class="line"></span><br><span class="line">    private Singleton() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static Singleton getInstance() &#123;</span><br><span class="line">        if (instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">            instance &#x3D; new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>懒汉式：‘懒’的意思就是指实例在用到的时候才去创建。用的时候才去检查有没有实例，如果有则返回，没有则新建。有线程安全和线程不安全两种写法，区别就是synchronized关键字。</p>
+<h5 id="2、饿汉式"><a href="#2、饿汉式" class="headerlink" title="2、饿汉式"></a>2、饿汉式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    private static Singleton instance &#x3D; new Singleton();</span><br><span class="line"></span><br><span class="line">    private Singleton() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static Singleton getInstance() &#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>饿汉式：与懒汉式相反，比较‘勤’，意思就是指实例在初始化的时候就已经建好了，不管你有没有用到，都先建好了再说。好处是没有线程安全的问题，坏处是浪费内存空间。</p>
+<h5 id="3、双检锁"><a href="#3、双检锁" class="headerlink" title="3、双检锁"></a>3、双检锁</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    private static volatile Singleton instance;</span><br><span class="line"></span><br><span class="line">    private Singleton() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static Singleton getInstance() &#123;</span><br><span class="line">        if (instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">            synchronized(Singleton.class) &#123;</span><br><span class="line">                if (instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">                    instance &#x3D; new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>双检锁，又叫双重校验锁，综合了懒汉式和饿汉式两者的优缺点整合而成。看上面代码实现中，特点是在synchronized关键字内外都加了一层 if 条件判断，这样既保证了线程安全，又比直接上锁提高了执行效率，还节省了内存空间。</p>
+<h5 id="4、静态内部类"><a href="#4、静态内部类" class="headerlink" title="4、静态内部类"></a>4、静态内部类</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    private static class SingletonHolder &#123;</span><br><span class="line">        private static final Singleton INSTANCE &#x3D; new Singleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Singleton() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Singleton getInstance() &#123;</span><br><span class="line">        return SingletonHolder.INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>静态内部类：采用了静态资源只加载一次的原理，实现了单例，效果类似双检锁，线程安全，且在内加载的时候才会初始化单例对象。但这种方式只适用于静态域的情况。</p>
+<h5 id="5、枚举"><a href="#5、枚举" class="headerlink" title="5、枚举"></a>5、枚举</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;</span><br><span class="line"></span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    public void yourMethod() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>枚举的方法不是很常见，我理解由于业务上的原因不适合使用枚举类来做单例故而不常见。但使用枚举类实现代码还是十分简洁的，并且还自动支持序列化机制，绝对防止多次实例化。</p>
+<p>综上就是Java中单例的几种实现方式，总结来看：懒汉式（包含线程安全和线程不安全两种方式）都比较少用；饿汉式和双检锁都可以使用，可根据具体情况自主选择；在要明确实现懒加载效果时，可以考虑静态内部类的实现方式；若涉及到反序列化创建对象时，大家也可以尝试使用枚举方式。</p>
+
       
 
       
@@ -310,7 +326,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">玩转Java设计模式之单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E6%87%92%E6%B1%89%E5%BC%8F"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">1、懒汉式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E9%A5%BF%E6%B1%89%E5%BC%8F"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">2、饿汉式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E5%8F%8C%E6%A3%80%E9%94%81"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">3、双检锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E9%9D%99%E6%80%81%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">4、静态内部类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">5、枚举</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
