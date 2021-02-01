@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://gitee.com/lihao0113/photos/raw/master/1611909872.jpg">
 <meta property="og:image" content="https://gitee.com/lihao0113/photos/raw/master/1612162466.jpg">
 <meta property="article:published_time" content="2021-01-29T08:12:46.000Z">
-<meta property="article:modified_time" content="2021-02-01T07:00:12.758Z">
+<meta property="article:modified_time" content="2021-02-01T07:22:35.646Z">
 <meta property="article:author" content="hao li">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -183,6 +183,8 @@
       
         <h2 id="从零开始，Springboot-mybatis-druid实现多数据源（AOP动态切换）"><a href="#从零开始，Springboot-mybatis-druid实现多数据源（AOP动态切换）" class="headerlink" title="从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）"></a>从零开始，Springboot+mybatis+druid实现多数据源（AOP动态切换）</h2><h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h3><p>最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。<br>在做的过程中整理了这篇文章，有需要的朋友可以看看。</p>
 <h3 id="1-构建springboot工程"><a href="#1-构建springboot工程" class="headerlink" title="1.构建springboot工程"></a>1.构建springboot工程</h3><p>1.使用编译器构建个Springboot工程，不多做介绍。<br>2.加入以下依赖：连接池、mysql、mybatis、aspectj。</p>
+<a id="more"></a>
+
 <pre><code>    &lt;dependency&gt;
         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
         &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
@@ -331,11 +333,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/02/01/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E7%BD%AE%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/02/01/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          玩转Java设置模式之单例模式
+          玩转Java设计模式之单例模式
         
       </div>
     </a>
