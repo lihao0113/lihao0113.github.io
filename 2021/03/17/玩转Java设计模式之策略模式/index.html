@@ -23,15 +23,15 @@
         border-left-color: #6d6d6d;    /*左边框颜色*/
     }
   </style>
-  <meta name="description" content="1.背景&amp;nbsp;&amp;nbsp;为什么想介绍下策略模式，因为我已经在很多场景下用到锅这个模式，相信很多人也是，这是java设计模式中非常常用的一个模式了。 2.策略模式介绍1.什么是策略模式&amp;nbsp;&amp;nbsp;策略模式就是定义一系列算法,把他们一个一个封装起来,并且使他们可以相互替换.&amp;nbsp;&amp;nbsp;用人话来举个例子：就是你想去旅游，预算10w元，四个旅游团分别给出了四种方案（策略），">
+  <meta name="description" content="1.背景&amp;nbsp;&amp;nbsp;为什么想介绍下策略模式，因为我已经在很多场景下用到过这个模式，相信很多人也是，这是java设计模式中非常常用的一个模式了。 2.策略模式介绍1.什么是策略模式&amp;nbsp;&amp;nbsp;策略模式就是定义一系列算法,把他们一个一个封装起来,并且使他们可以相互替换.&amp;nbsp;&amp;nbsp;用人话来举个例子：就是你想去旅游，预算10w元，四个旅游团分别给出了四种方案（策略），">
 <meta property="og:type" content="article">
 <meta property="og:title" content="玩转Java设计模式之策略模式">
 <meta property="og:url" content="http://blog.hcloud.work/2021/03/17/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="吾之初心">
-<meta property="og:description" content="1.背景&amp;nbsp;&amp;nbsp;为什么想介绍下策略模式，因为我已经在很多场景下用到锅这个模式，相信很多人也是，这是java设计模式中非常常用的一个模式了。 2.策略模式介绍1.什么是策略模式&amp;nbsp;&amp;nbsp;策略模式就是定义一系列算法,把他们一个一个封装起来,并且使他们可以相互替换.&amp;nbsp;&amp;nbsp;用人话来举个例子：就是你想去旅游，预算10w元，四个旅游团分别给出了四种方案（策略），">
+<meta property="og:description" content="1.背景&amp;nbsp;&amp;nbsp;为什么想介绍下策略模式，因为我已经在很多场景下用到过这个模式，相信很多人也是，这是java设计模式中非常常用的一个模式了。 2.策略模式介绍1.什么是策略模式&amp;nbsp;&amp;nbsp;策略模式就是定义一系列算法,把他们一个一个封装起来,并且使他们可以相互替换.&amp;nbsp;&amp;nbsp;用人话来举个例子：就是你想去旅游，预算10w元，四个旅游团分别给出了四种方案（策略），">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-17T10:10:27.000Z">
-<meta property="article:modified_time" content="2021-03-17T10:14:23.900Z">
+<meta property="article:modified_time" content="2021-03-17T10:18:30.118Z">
 <meta property="article:author" content="hao li">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -174,9 +174,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h5><p>&nbsp;&nbsp;为什么想介绍下策略模式，因为我已经在很多场景下用到锅这个模式，相信很多人也是，这是java设计模式中非常常用的一个模式了。</p>
+        <h5 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h5><p>&nbsp;&nbsp;为什么想介绍下策略模式，因为我已经在很多场景下用到过这个模式，相信很多人也是，这是java设计模式中非常常用的一个模式了。</p>
 <h5 id="2-策略模式介绍"><a href="#2-策略模式介绍" class="headerlink" title="2.策略模式介绍"></a>2.策略模式介绍</h5><h6 id="1-什么是策略模式"><a href="#1-什么是策略模式" class="headerlink" title="1.什么是策略模式"></a>1.什么是策略模式</h6><p>&nbsp;&nbsp;策略模式就是定义一系列算法,把他们一个一个封装起来,并且使他们可以相互替换.<br>&nbsp;&nbsp;用人话来举个例子：就是你想去旅游，预算10w元，四个旅游团分别给出了四种方案（策略），你可以任意选择其中一个来获得不一样的旅游体验。</p>
-<h6 id="2-策略模式的作用"><a href="#2-策略模式的作用" class="headerlink" title="2.策略模式的作用"></a>2.策略模式的作用</h6><p>&nbsp;&nbsp;举个例子吧：<br>一天老板除了个需求，我要用户按照不同的会员等级获得不一样的购物体验。</p>
+<h6 id="2-策略模式的作用"><a href="#2-策略模式的作用" class="headerlink" title="2.策略模式的作用"></a>2.策略模式的作用</h6><p>&nbsp;&nbsp;举个例子吧：<br>一天老板提了个需求，我要用户按照不同的会员等级获得不一样的购物体验。</p>
 <a id="more"></a>
 <p>程序员小菜一听，这简单啊，于是分分钟写下了下边的代码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void shop(User user) &#123;</span><br><span class="line">    if (user.getType() &#x3D;&#x3D; 1) &#123; &#x2F;&#x2F; 普通用户</span><br><span class="line">        &#x2F;&#x2F; 此处省略500行</span><br><span class="line">    &#125; else if (user.getType() &#x3D;&#x3D; 2) &#123; &#x2F;&#x2F; vip</span><br><span class="line">        &#x2F;&#x2F; 此处省略500行</span><br><span class="line">    &#125; else if (user.getType() &#x3D;&#x3D; 3) &#123; &#x2F;&#x2F; svip</span><br><span class="line">        &#x2F;&#x2F; 此处省略500行</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        &#x2F;&#x2F; 此处省略500行</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
