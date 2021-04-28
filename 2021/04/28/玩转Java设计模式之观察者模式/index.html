@@ -23,15 +23,15 @@
         border-left-color: #6d6d6d;    /*左边框颜色*/
     }
   </style>
-  <meta name="description" content="1.什么是观察者模式&amp;nbsp;&amp;nbsp;观察者模式主要用于解决一个对象发生变化，该对象注册的其他对象都能得到通知的这么个场景。事实上就是发布订阅，发布者发布信息，订阅者获取信息，订阅了就能收到信息，没订阅就收不到信息。 &amp;nbsp;&amp;nbsp;举个例子：微信公众号服务，不定时发布消息，关注公众号的才会收到推送的消息。 2.观察者模式的实际场景&amp;nbsp;&amp;nbsp;说个曾经我遇到过的场景：&amp;n">
+  <meta name="description" content="1.什么是观察者模式&amp;nbsp;&amp;nbsp;观察者模式主要用于解决一个对象发生变化，该对象注册的其他对象都能得到通知的这么个场景。事实上就是发布订阅，发布者发布信息，订阅者获取信息，订阅了就能收到信息，没订阅就收不到信息。 &amp;nbsp;&amp;nbsp;举个例子：微信公众号服务，不定时发布消息，关注公众号的才会收到推送的消息。 2.观察者模式的实际场景&amp;nbsp;&amp;nbsp;说个曾经我遇到过的场景：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="玩转Java设计模式之观察者模式">
 <meta property="og:url" content="http://www.hcloud.work/2021/04/28/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="吾之初心">
-<meta property="og:description" content="1.什么是观察者模式&amp;nbsp;&amp;nbsp;观察者模式主要用于解决一个对象发生变化，该对象注册的其他对象都能得到通知的这么个场景。事实上就是发布订阅，发布者发布信息，订阅者获取信息，订阅了就能收到信息，没订阅就收不到信息。 &amp;nbsp;&amp;nbsp;举个例子：微信公众号服务，不定时发布消息，关注公众号的才会收到推送的消息。 2.观察者模式的实际场景&amp;nbsp;&amp;nbsp;说个曾经我遇到过的场景：&amp;n">
+<meta property="og:description" content="1.什么是观察者模式&amp;nbsp;&amp;nbsp;观察者模式主要用于解决一个对象发生变化，该对象注册的其他对象都能得到通知的这么个场景。事实上就是发布订阅，发布者发布信息，订阅者获取信息，订阅了就能收到信息，没订阅就收不到信息。 &amp;nbsp;&amp;nbsp;举个例子：微信公众号服务，不定时发布消息，关注公众号的才会收到推送的消息。 2.观察者模式的实际场景&amp;nbsp;&amp;nbsp;说个曾经我遇到过的场景：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-28T09:29:24.000Z">
-<meta property="article:modified_time" content="2021-04-28T09:31:05.981Z">
+<meta property="article:modified_time" content="2021-04-28T09:34:22.984Z">
 <meta property="article:author" content="hao li">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -176,9 +176,9 @@
       
         <h5 id="1-什么是观察者模式"><a href="#1-什么是观察者模式" class="headerlink" title="1.什么是观察者模式"></a>1.什么是观察者模式</h5><p>&nbsp;&nbsp;观察者模式主要用于解决一个对象发生变化，该对象注册的其他对象都能得到通知的这么个场景。事实上就是发布订阅，发布者发布信息，订阅者获取信息，订阅了就能收到信息，没订阅就收不到信息。</p>
 <p>&nbsp;&nbsp;举个例子：微信公众号服务，不定时发布消息，关注公众号的才会收到推送的消息。</p>
-<h5 id="2-观察者模式的实际场景"><a href="#2-观察者模式的实际场景" class="headerlink" title="2.观察者模式的实际场景"></a>2.观察者模式的实际场景</h5><p>&nbsp;&nbsp;说个曾经我遇到过的场景：<br>&nbsp;&nbsp; A、B、C三个服务。B、C服务均希望在A服务在Start Complete后与A服务发生数据精细化对比相关数据的操作。这里使用的就是观察者模式，B、C服务需要感知A服务的Start Complete事件并拉起自身的业务逻辑。<br>&nbsp;&nbsp; 下面就介绍下该场景如何使用观察者模式实现。</p>
+<h5 id="2-观察者模式的实际场景"><a href="#2-观察者模式的实际场景" class="headerlink" title="2.观察者模式的实际场景"></a>2.观察者模式的实际场景</h5><p>&nbsp;&nbsp;说个曾经我遇到过的场景：</p>
 <a id="more"></a>
-
+<p>&nbsp;&nbsp; A、B、C三个服务。B、C服务均希望在A服务在Start Complete后与A服务发生数据精细化对比相关数据的操作。这里使用的就是观察者模式，B、C服务需要感知A服务的Start Complete事件并拉起自身的业务逻辑。<br>&nbsp;&nbsp; 下面就介绍下该场景如何使用观察者模式实现。</p>
 <h5 id="3-观察者模式的实现"><a href="#3-观察者模式的实现" class="headerlink" title="3.观察者模式的实现"></a>3.观察者模式的实现</h5><p>&nbsp;&nbsp;观察者模式的核心就是两个角色的设计：发布者和订阅者。<br>&nbsp;&nbsp;这里主要以如上服务的场景介绍下观察者模式的实现，实际的服务如何实现不做展示。</p>
 <h6 id="1-创建发布者A服务"><a href="#1-创建发布者A服务" class="headerlink" title="1. 创建发布者A服务"></a>1. 创建发布者A服务</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class ServerA &#123;</span><br><span class="line"></span><br><span class="line">    private List&lt;Observer&gt; observers &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    public void register(Observer observer) &#123;</span><br><span class="line">        observers.add(observer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void unRegister(Observer observer) &#123;</span><br><span class="line">        observers.remove(observer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void notifyAllObservers() &#123;</span><br><span class="line">        observers.forEach(Observer::doSomething);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>发布者A服务，持有向他订阅的服务者列表；有注册和去注册的方法；有通知所有订阅者的方法。订阅者会提前向发布者注册，当发布者在想要通知订阅者时，调用notifyAllObservers方法即可通知到所有的订阅者。</p>
