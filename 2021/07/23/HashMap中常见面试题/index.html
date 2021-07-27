@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://gitee.com/lihao0113/photos/raw/master/ConcurrentHashMap%E5%88%86%E6%AE%B5%E9%94%81.jpg">
 <meta property="og:image" content="https://gitee.com/lihao0113/photos/raw/master/java8_concurrenthashmap.png">
 <meta property="article:published_time" content="2021-07-23T08:08:01.000Z">
-<meta property="article:modified_time" content="2021-07-27T09:12:04.036Z">
+<meta property="article:modified_time" content="2021-07-27T09:13:59.491Z">
 <meta property="article:author" content="hao li">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -196,14 +196,10 @@
 <h6 id="5-ConcurrentHashMap-线程安全的具体实现方式-底层具体实现"><a href="#5-ConcurrentHashMap-线程安全的具体实现方式-底层具体实现" class="headerlink" title="5.ConcurrentHashMap 线程安全的具体实现方式/底层具体实现"></a>5.ConcurrentHashMap 线程安全的具体实现方式/底层具体实现</h6><p><strong>底层数据结构：</strong>JDK1.7 的 ConcurrentHashMap 底层采用 分段的数组+链表 实现，JDK1.8 采用的数据结构跟 HashMap1.8 的结构一样，数组+链表/红黑二叉树。</p>
 <p>**实现线程安全的方式： **在 JDK1.7 的时候，ConcurrentHashMap（分段锁） 对整个桶数组进行了分割分段(Segment)，每一把锁只锁容器其中一部分数据，多线程访问容器里不同数据段的数据，就不会存在锁竞争，提高并发访问率。 到了 JDK1.8 的时候已经摒弃了 Segment 的概念，而是直接用 Node 数组+链表+红黑树的数据结构来实现，并发控制使用 synchronized 和 CAS 来操作。</p>
 <p>**线程安全实现&amp;示意图： **</p>
-<ol>
-<li>JDK1.7：</li>
-</ol>
+<p>1.JDK1.7：</p>
 <p><img src="https://gitee.com/lihao0113/photos/raw/master/ConcurrentHashMap%E5%88%86%E6%AE%B5%E9%94%81.jpg"></p>
 <p>首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。<br>图中的Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁。<br>一个 ConcurrentHashMap 里包含一个 Segment 数组。Segment 的结构和 HashMap 类似，是一种数组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每个 Segment 守护着一个 HashEntry 数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先获得对应的 Segment 的锁。</p>
-<ol start="2">
-<li>JDK1.8：</li>
-</ol>
+<p>2.JDK1.8：</p>
 <p><img src="https://gitee.com/lihao0113/photos/raw/master/java8_concurrenthashmap.png"></p>
 <p>ConcurrentHashMap 取消了 Segment 分段锁，采用 CAS 和 synchronized 来保证并发安全。数据结构跟 HashMap1.8 的结构类似，数组+链表/红黑二叉树。<br>在进行插入时，若当前数组下标是否第一次插入，如果是就通过 CAS 方式插入。synchronized 只锁定当前链表或红黑二叉树的首节点，这样只要 hash 不冲突，就不会产生并发。</p>
 
