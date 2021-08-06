@@ -23,16 +23,16 @@
         border-left-color: #6d6d6d;    /*左边框颜色*/
     }
   </style>
-  <meta name="description" content="&amp;nbsp;&amp;nbsp; 池化技术相比大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。线程池通过对线程生命周期的管理和任务的统一调度，降低了线程资源的消耗，具有方便了编码中对线程的管理和便于优化线程数的优点等。 2.创建线程池的方式1.ThreadPoolExecutor，通过他的构造方法来创建线程池ThreadPoolExecutor最长参数的构造函数">
+  <meta name="description" content="1.为什么需要线程池？&amp;nbsp;&amp;nbsp; 池化技术相比大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。线程池通过对线程生命周期的管理和任务的统一调度，降低了线程资源的消耗，具有方便了编码中对线程的管理和便于优化线程数的优点等。 2.创建线程池的方式1.ThreadPoolExecutor，通过他的构造方法来创建线程池ThreadPoolExecutor最长">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java多线程与并发-Java中的线程池">
 <meta property="og:url" content="http://www.hcloud.work/2021/07/28/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0/index.html">
 <meta property="og:site_name" content="不忘初心，保持进步">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp; 池化技术相比大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。线程池通过对线程生命周期的管理和任务的统一调度，降低了线程资源的消耗，具有方便了编码中对线程的管理和便于优化线程数的优点等。 2.创建线程池的方式1.ThreadPoolExecutor，通过他的构造方法来创建线程池ThreadPoolExecutor最长参数的构造函数">
+<meta property="og:description" content="1.为什么需要线程池？&amp;nbsp;&amp;nbsp; 池化技术相比大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。线程池通过对线程生命周期的管理和任务的统一调度，降低了线程资源的消耗，具有方便了编码中对线程的管理和便于优化线程数的优点等。 2.创建线程池的方式1.ThreadPoolExecutor，通过他的构造方法来创建线程池ThreadPoolExecutor最长">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/lihao0113/photos/raw/master/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B.png">
 <meta property="article:published_time" content="2021-07-28T09:19:13.000Z">
-<meta property="article:modified_time" content="2021-07-28T09:30:42.070Z">
+<meta property="article:modified_time" content="2021-08-06T08:46:12.651Z">
 <meta property="article:author" content="hao li">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -176,7 +176,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&nbsp; 池化技术相比大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。线程池通过对线程生命周期的管理和任务的统一调度，降低了线程资源的消耗，具有方便了编码中对线程的管理和便于优化线程数的优点等。</p>
+        <h5 id="1-为什么需要线程池？"><a href="#1-为什么需要线程池？" class="headerlink" title="1.为什么需要线程池？"></a>1.为什么需要线程池？</h5><p>&nbsp;&nbsp; 池化技术相比大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。线程池通过对线程生命周期的管理和任务的统一调度，降低了线程资源的消耗，具有方便了编码中对线程的管理和便于优化线程数的优点等。</p>
 <h5 id="2-创建线程池的方式"><a href="#2-创建线程池的方式" class="headerlink" title="2.创建线程池的方式"></a>2.创建线程池的方式</h5><h6 id="1-ThreadPoolExecutor，通过他的构造方法来创建线程池"><a href="#1-ThreadPoolExecutor，通过他的构造方法来创建线程池" class="headerlink" title="1.ThreadPoolExecutor，通过他的构造方法来创建线程池"></a>1.ThreadPoolExecutor，通过他的构造方法来创建线程池</h6><p>ThreadPoolExecutor最长参数的构造函数</p>
 <a id="more"></a>
 
@@ -326,7 +326,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">2.创建线程池的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-ThreadPoolExecutor%EF%BC%8C%E9%80%9A%E8%BF%87%E4%BB%96%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E6%9D%A5%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">1.1.</span> <span class="toc-text">1.ThreadPoolExecutor，通过他的构造方法来创建线程池</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E9%80%9A%E8%BF%87Executor-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B7%A5%E5%85%B7%E7%B1%BB-Executors-%E6%9D%A5%E5%AE%9E%E7%8E%B0-%E4%B8%8D%E6%8E%A8%E8%8D%90"><span class="toc-number">1.2.</span> <span class="toc-text">2.通过Executor 框架的工具类 Executors 来实现 (不推荐)</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E4%BB%BB%E5%8A%A1%E5%B9%B6%E6%8F%90%E4%BA%A4%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">2.</span> <span class="toc-text">3.创建任务并提交线程池</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5"><span class="toc-number">3.</span> <span class="toc-text">4.线程池的拒绝策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E6%8F%90%E4%BA%A4%E4%BB%BB%E5%8A%A1%E5%88%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">5.提交任务到线程池流程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%95%B0%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A"><span class="toc-number">5.</span> <span class="toc-text">6.线程池的线程数如何确定?</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">1.为什么需要线程池？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">2.创建线程池的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-ThreadPoolExecutor%EF%BC%8C%E9%80%9A%E8%BF%87%E4%BB%96%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E6%9D%A5%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">2.1.</span> <span class="toc-text">1.ThreadPoolExecutor，通过他的构造方法来创建线程池</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E9%80%9A%E8%BF%87Executor-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%B7%A5%E5%85%B7%E7%B1%BB-Executors-%E6%9D%A5%E5%AE%9E%E7%8E%B0-%E4%B8%8D%E6%8E%A8%E8%8D%90"><span class="toc-number">2.2.</span> <span class="toc-text">2.通过Executor 框架的工具类 Executors 来实现 (不推荐)</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E4%BB%BB%E5%8A%A1%E5%B9%B6%E6%8F%90%E4%BA%A4%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">3.</span> <span class="toc-text">3.创建任务并提交线程池</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5"><span class="toc-number">4.</span> <span class="toc-text">4.线程池的拒绝策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E6%8F%90%E4%BA%A4%E4%BB%BB%E5%8A%A1%E5%88%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%B5%81%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">5.提交任务到线程池流程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%95%B0%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A"><span class="toc-number">6.</span> <span class="toc-text">6.线程池的线程数如何确定?</span></a></li></ol>
                     </div>
                 </span>
             </div>
