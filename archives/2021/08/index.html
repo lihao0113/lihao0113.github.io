@@ -6,7 +6,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.hcloud.work">
-  <title>吾之初心</title>
+  <title>Archives: 2021/8 | 吾之初心</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
   <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
@@ -26,7 +26,7 @@
   <meta name="description" content="记录学习工作中的知识，加以总结归纳">
 <meta property="og:type" content="website">
 <meta property="og:title" content="吾之初心">
-<meta property="og:url" content="http://www.hcloud.work/index.html">
+<meta property="og:url" content="http://www.hcloud.work/archives/2021/08/index.html">
 <meta property="og:site_name" content="吾之初心">
 <meta property="og:description" content="记录学习工作中的知识，加以总结归纳">
 <meta property="og:locale" content="zh_CN">
@@ -154,586 +154,47 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Java多线程与并发-Java中实现同步的方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/05/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-Java%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F/">Java多线程与并发-Java中实现同步的方式</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/05/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-Java%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/08/05/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-Java%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F/" class="archive-article-date">
   	<time datetime="2021-08-05T04:00:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-05</time>
 </a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-什么是同步？为何要使用同步？"><a href="#1-什么是同步？为何要使用同步？" class="headerlink" title="1.什么是同步？为何要使用同步？"></a>1.什么是同步？为何要使用同步？</h5><p>同步：指的是一个线程发出某一功能调用时，在没得到结果之前，该调用不返回。同时其他线程为保证数据一致性，不能调用该功能。</p>
-<p>同步的作用：当多个线程同时操作一个可共享的资源变量时，将会导致数据不准确，因此加入同步锁以避免在该线程没有完成操作之前，被其他线程的调用，从而保证了该变量的唯一性和准确性。</p>
-<p>Java中实现同步的主要方式是通过关键字synchronized和Lock API主要实现类ReentrantLock</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/05/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-Java%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java多线程与并发-Java中的线程池" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/28/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java多线程与并发-Java中的线程池</a>
+      <a class="archive-article-title" href="/2021/08/05/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-Java%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F/">Java多线程与并发-Java中实现同步的方式</a>
     </h1>
   
 
-        
-        <a href="/2021/07/28/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="archive-article-date">
-  	<time datetime="2021-07-28T09:19:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&nbsp;&nbsp; 池化技术相比大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。线程池通过对线程生命周期的管理和任务的统一调度，降低了线程资源的消耗，具有方便了编码中对线程的管理和便于优化线程数的优点等。</p>
-<h5 id="2-创建线程池的方式"><a href="#2-创建线程池的方式" class="headerlink" title="2.创建线程池的方式"></a>2.创建线程池的方式</h5><h6 id="1-ThreadPoolExecutor，通过他的构造方法来创建线程池"><a href="#1-ThreadPoolExecutor，通过他的构造方法来创建线程池" class="headerlink" title="1.ThreadPoolExecutor，通过他的构造方法来创建线程池"></a>1.ThreadPoolExecutor，通过他的构造方法来创建线程池</h6><p>ThreadPoolExecutor最长参数的构造函数</p>
-        
-      
+        <div class="article-info info-on-right">
+          
+          
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/28/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-Java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-HashMap中常见面试题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/23/HashMap%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/">HashMap中常见面试题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/07/23/HashMap%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-07-23T08:08:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h6 id="1-HashMap的底层数据结构"><a href="#1-HashMap的底层数据结构" class="headerlink" title="1.HashMap的底层数据结构"></a>1.HashMap的底层数据结构</h6><ol>
-<li><p>JDK1.8 之前<br>JDK1.8之前HashMap底层是数组和链表结合在一起使用也就是链表散列，通过拉链法来解决hash冲突。<br>所谓 “拉链法” 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/23/HashMap%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java多线程与并发-基础概念篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/19/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E7%AF%87/">Java多线程与并发-基础概念篇</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/19/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E7%AF%87/" class="archive-article-date">
-  	<time datetime="2021-05-19T08:18:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-进程与线程"><a href="#1-进程与线程" class="headerlink" title="1.进程与线程"></a>1.进程与线程</h5><h6 id="1-概念："><a href="#1-概念：" class="headerlink" title="1.概念："></a>1.概念：</h6><p>&nbsp;&nbsp;进程：是代码在数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位。<br>&nbsp;&nbsp;线程：是进程的执行单元，CPU调度和分派的基本单位，多个线程之间共享进程的资源。</p>
-<h6 id="2-关系："><a href="#2-关系：" class="headerlink" title="2.关系："></a>2.关系：</h6><p>答：一个进程中有多个线程，线程是进程的执行单元，多个线程共享进程的资源，可以理解为线程是和进程是所属关系的。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/19/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E7%AF%87/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-玩转Java设计模式之观察者模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/28/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">玩转Java设计模式之观察者模式</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/28/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-04-28T09:29:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-什么是观察者模式"><a href="#1-什么是观察者模式" class="headerlink" title="1.什么是观察者模式"></a>1.什么是观察者模式</h5><p>&nbsp;&nbsp;观察者模式主要用于解决一个对象发生变化，该对象注册的其他对象都能得到通知的这么个场景。事实上就是发布订阅，发布者发布信息，订阅者获取信息，订阅了就能收到信息，没订阅就收不到信息。</p>
-<p>&nbsp;&nbsp;举个例子：微信公众号服务，不定时发布消息，关注公众号的才会收到推送的消息。</p>
-<h5 id="2-观察者模式的实际场景"><a href="#2-观察者模式的实际场景" class="headerlink" title="2.观察者模式的实际场景"></a>2.观察者模式的实际场景</h5><p>&nbsp;&nbsp;说个曾经我遇到过的场景：</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/28/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-玩转Java设计模式之策略模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/17/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">玩转Java设计模式之策略模式</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/17/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-03-17T10:10:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h5><p>&nbsp;&nbsp;为什么想介绍下策略模式，因为我已经在很多场景下用到过这个模式，相信很多人也是，这是java设计模式中非常常用的一个模式了。</p>
-<h5 id="2-策略模式介绍"><a href="#2-策略模式介绍" class="headerlink" title="2.策略模式介绍"></a>2.策略模式介绍</h5><h6 id="1-什么是策略模式"><a href="#1-什么是策略模式" class="headerlink" title="1.什么是策略模式"></a>1.什么是策略模式</h6><p>&nbsp;&nbsp;策略模式就是定义一系列算法,把他们一个一个封装起来,并且使他们可以相互替换.<br>&nbsp;&nbsp;用人话来举个例子：就是你想去旅游，预算10w元，四个旅游团分别给出了四种方案（策略），你可以任意选择其中一个来获得不一样的旅游体验。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/17/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-玩转Java设计模式之代理模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/21/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">玩转Java设计模式之代理模式</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/21/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-02-21T08:12:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-什么是代理？"><a href="#1-什么是代理？" class="headerlink" title="1.什么是代理？"></a>1.什么是代理？</h3><p>举个例子：你今天要去送资料，临时有事找了张三帮你送，张三就可以看作是代理你的代理对象，代理的行为（方法）是送资料。</p>
-<p>简单来说就是我们使用代理对象来代替对真实对象，在不修改原目标对象的前提下，提供源对象的功能，同时还具备扩展目标对象的功能特性。<br>代理模式的主要作用是扩展目标对象的功能，比如说在目标对象的某个方法执行前后你可以增加一些自定义的操作。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/21/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-玩转Java设计模式之单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/01/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">玩转Java设计模式之单例模式</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/01/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-02-01T07:11:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>顾名思义，单例模式就是指生成的对象为同一个对象的一种设计模式，本文主要介绍下单例模式的几种实现方法和对应的特点。</p>
-<p>单例的实现主要有五种：懒汉式、饿汉式、双检锁、静态内部类、枚举。</p>
-<h5 id="1、懒汉式"><a href="#1、懒汉式" class="headerlink" title="1、懒汉式"></a>1、懒汉式</h5><p>不多说，直接上代码</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/01/%E7%8E%A9%E8%BD%ACJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringBoot-Mybatis-druid实现多数据源" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/29/SpringBoot-Mybatis-druid%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/">SpringBoot+Mybatis+druid实现多数据源</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/29/SpringBoot-Mybatis-druid%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/" class="archive-article-date">
-  	<time datetime="2021-01-29T08:12:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h3><p>最近在重构一个老项目，由于项目一直使用主从架构和分库。老项目一直使用sql语句中携带库名的方式，所以新项目打算基于AOP做个动态切换数据源。<br>在做的过程中整理了这篇文章，有需要的朋友可以看看。</p>
-<h3 id="1-构建springboot工程"><a href="#1-构建springboot工程" class="headerlink" title="1.构建springboot工程"></a>1.构建springboot工程</h3><p>1.使用编译器构建个Springboot工程，不多做介绍。<br>2.加入以下依赖：连接池、mysql、mybatis、aspectj。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/29/SpringBoot-Mybatis-druid%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -755,9 +216,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
