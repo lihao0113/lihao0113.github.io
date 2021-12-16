@@ -6,7 +6,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.hcloud.work">
-  <title>Java8异步框架之CompletableFuture | 不忘初心，保持进步</title>
+  <title>不忘初心，保持进步</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
   <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
@@ -23,18 +23,26 @@
         border-left-color: #6d6d6d;    /*左边框颜色*/
     }
   </style>
-  <meta name="description" content="1. CompletableFutureCompletableFuture 是JDK1.8版本新引入的类。主要作用就是进行任务的异步计算，通过函数式接口的方式帮助我们简化了异步计算的复杂性。 适用场景当你的业务处理中需要对部分处理异步计算，且最终汇总计算结果时，CompletableFuture是你不二的选择。JDK1.5中也提供了Future接口，但是获取结果需要一直让CPU轮询，同时配合线程或">
+  <meta name="description" content="����IDEA�����������µİ汾 ��ַ: https:&#x2F;&#x2F;www.jetbrains.com&#x2F;idea&#x2F;download&#x2F;other.html�����Լ��ĵ���ϵͳ���ض�Ӧ��װ��  ���ؼ�����ɨ���ע��ͼ���ںţ��ظ�” idea2021”����”idea”�ɻ�ȡ�����  ��װIDEA   ��װ���̲�����׸������װ��ɺ��I">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java8异步框架之CompletableFuture">
-<meta property="og:url" content="http://blog.hcloud.work/2021/08/12/Java8%E5%BC%82%E6%AD%A5%E6%A1%86%E6%9E%B6%E4%B9%8BCompletableFuture/index.html">
+<meta property="og:title" content="不忘初心，保持进步">
+<meta property="og:url" content="http://blog.hcloud.work/2021/12/16/IntelliJ%20IDEA%202021.2.1%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B%E3%80%81IDEA2021%E6%B0%B8%E4%B9%85%E7%A0%B4%E8%A7%A3%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%EF%BC%8C%E9%80%82%E7%94%A8JetBrains%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E7%A0%B4%E8%A7%A3/index.html">
 <meta property="og:site_name" content="不忘初心，保持进步">
-<meta property="og:description" content="1. CompletableFutureCompletableFuture 是JDK1.8版本新引入的类。主要作用就是进行任务的异步计算，通过函数式接口的方式帮助我们简化了异步计算的复杂性。 适用场景当你的业务处理中需要对部分处理异步计算，且最终汇总计算结果时，CompletableFuture是你不二的选择。JDK1.5中也提供了Future接口，但是获取结果需要一直让CPU轮询，同时配合线程或">
+<meta property="og:description" content="����IDEA�����������µİ汾 ��ַ: https:&#x2F;&#x2F;www.jetbrains.com&#x2F;idea&#x2F;download&#x2F;other.html�����Լ��ĵ���ϵͳ���ض�Ӧ��װ��  ���ؼ�����ɨ���ע��ͼ���ںţ��ظ�” idea2021”����”idea”�ɻ�ȡ�����  ��װIDEA   ��װ���̲�����׸������װ��ɺ��I">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-12T05:55:55.000Z">
-<meta property="article:modified_time" content="2021-08-12T05:57:07.380Z">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356858-149539467.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356929-1680231745.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356980-2049323895.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356942-883628922.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356945-554640047.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356933-1194949242.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356922-816309275.png">
+<meta property="article:published_time" content="2021-12-16T11:40:13.802Z">
+<meta property="article:modified_time" content="2021-12-16T11:40:13.802Z">
 <meta property="article:author" content="hao li">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356858-149539467.png">
   
     <link rel="alternative" href="/atom.xml" title="不忘初心，保持进步" type="application/atom+xml">
   
@@ -154,55 +162,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java8异步框架之CompletableFuture" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-IntelliJ IDEA 2021.2.1永久激活破解教程、IDEA2021永久破解图文教程，适用JetBrains全家桶激活破解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Java8异步框架之CompletableFuture
-    </h1>
-  
-
-        
-        <a href="/2021/08/12/Java8%E5%BC%82%E6%AD%A5%E6%A1%86%E6%9E%B6%E4%B9%8BCompletableFuture/" class="archive-article-date">
-  	<time datetime="2021-08-12T05:55:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-12</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-CompletableFuture"><a href="#1-CompletableFuture" class="headerlink" title="1. CompletableFuture"></a>1. CompletableFuture</h4><p>CompletableFuture 是JDK1.8版本新引入的类。主要作用就是进行任务的异步计算，通过函数式接口的方式帮助我们简化了异步计算的复杂性。</p>
-<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><p>当你的业务处理中需要对部分处理异步计算，且最终汇总计算结果时，CompletableFuture是你不二的选择。JDK1.5中也提供了Future接口，但是获取结果需要一直让CPU轮询，同时配合线程或者线程池的处理代码相对还是比较复杂的。</p>
-<a id="more"></a>
-<h4 id="2-创建异步任务"><a href="#2-创建异步任务" class="headerlink" title="2. 创建异步任务"></a>2. 创建异步任务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static CompletableFuture&lt;Void&gt; runAsync(Runnable runnable)</span><br><span class="line">public static CompletableFuture&lt;Void&gt; runAsync(Runnable runnable, Executor executor)</span><br><span class="line">public static &lt;U&gt; CompletableFuture&lt;U&gt; supplyAsync(Supplier&lt;U&gt; supplier)</span><br><span class="line">public static &lt;U&gt; CompletableFuture&lt;U&gt; supplyAsync(Supplier&lt;U&gt; supplier, Executor executor)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>CompletableFuture 中提供了四个静态方法来创建任务任务，其中runAsync方法无返回值，supplyAsync有返回值。</li>
-<li>方法中Executor参数用来指定执行异步任务的线程池，若不指定则默认使用ForkJoinPool.commonPool() 作为它的线程池执行异步代码。</li>
-</ul>
-<h4 id="3-计算完成回调"><a href="#3-计算完成回调" class="headerlink" title="3. 计算完成回调"></a>3. 计算完成回调</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public CompletableFuture&lt;T&gt; whenComplete(BiConsumer&lt;? super T, ? super Throwable&gt; action)</span><br><span class="line">public CompletableFuture&lt;T&gt; whenCompleteAsync(BiConsumer&lt;? super T, ? super Throwable&gt; action)</span><br><span class="line">public CompletableFuture&lt;T&gt; whenCompleteAsync(BiConsumer&lt;? super T, ? super Throwable&gt; action, Executor executor)</span><br></pre></td></tr></table></figure>
-<p>其中：</p>
-<ul>
-<li>whenComplete 是使用执行当前任务的线程（如main）去执行 whenComplete 中的任务。</li>
-<li>whenCompleteAsync 则是把后续的任务交给线程池，Executor 同样用来指定线程池。<br>回调方法非静态，需要配合上面 CompletableFuture 的对象进行调用。</li>
-</ul>
-<p>示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception &#123;</span><br><span class="line">    CompletableFuture&lt;String&gt; future &#x3D; CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">        System.out.println(&quot;1&quot;);</span><br><span class="line">        return &quot;1&quot;;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    future.whenCompleteAsync((r, tr) -&gt; &#123;</span><br><span class="line">        System.out.println(&quot;执行完成！&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如上代码是执行异步线程执行print(1)之后再异步执行print(执行完成)，可以配合打印线程名称及sleep验证使用情况。</p>
-<h4 id="4-串行化"><a href="#4-串行化" class="headerlink" title="4. 串行化"></a>4. 串行化</h4><p>当存在多个任务且相互依赖时，此时whenComplete回调无法满足需求了，CompletableFuture 提供了如下的方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public CompletableFuture&lt;Void&gt; thenRun(Runnable var1)</span><br><span class="line">public CompletableFuture&lt;Void&gt; thenAccept(Consumer&lt;? super T&gt; var1)</span><br><span class="line">public &lt;U&gt; CompletableFuture&lt;U&gt; thenApply(Function&lt;? super T, ? extends U&gt; var1)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>thenRun：单纯的等待上一个任务完成后执行，没有入参，也没有返回值</li>
-<li>thenAccept：等待上一个任务完成后的结果作为入参执行，没有返回值</li>
-<li>thenApply：等待上一个任务完成后的结果作为入参执行，有返回值<br>如上三个方法中都存在对应的Async方法，这里就不列出来了。</li>
-</ul>
-<h4 id="5-组合处理"><a href="#5-组合处理" class="headerlink" title="5. 组合处理"></a>5. 组合处理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public static CompletableFuture&lt;Void&gt; allOf(CompletableFuture&lt;?&gt;... var0)</span><br><span class="line">public static CompletableFuture&lt;Object&gt; anyOf(CompletableFuture&lt;?&gt;... var0)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>allOf 的含义是所有的 CompletableFuture 完成操作（如join）才可以做接下来的事情。</li>
-<li>anyOf 的含义是只要有任意一个 CompletableFuture 完成操作，就可以做接下来的事情。</li>
-</ul>
+        <ol>
+<li><p><strong>����IDEA</strong><br>�����������µİ汾 ��ַ: <a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/download/other.html">https://www.jetbrains.com/idea/download/other.html</a><br>�����Լ��ĵ���ϵͳ���ض�Ӧ��װ��</p>
+</li>
+<li><p><strong>���ؼ�����</strong><br>ɨ���ע��ͼ���ںţ��ظ�” idea2021”����”idea”�ɻ�ȡ�����<br><img src="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356858-149539467.png" alt="���������ͼƬ����"></p>
+</li>
+<li><p><strong>��װIDEA</strong></p>
+</li>
+</ol>
+<p>��װ���̲�����׸������װ��ɺ��IDEA��<br>ѡ�����á�<br><img src="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356929-1680231745.png" alt="���������ͼƬ����"><br>��������������ѡ�����޷�������������������ʹ�ò�����ϰ��еĽű���������<br>����ѡ������������С��飬����Դ˲���<br>windowsѡ��vbs��˫��ִ�У����ú��ٴ�����IDEA��<br><img src="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356980-2049323895.png" alt="���������ͼƬ����"><br><strong>�������ò����װ</strong><br>����ͼ��zip�������أ������ѹ������<br><img src="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356942-883628922.png" alt="���������ͼƬ����"><br>ֱ����ק�����IDEA�༭��<br>ע�⣺��ק��װ�ɹ�֮�󣬲�Ҫɾ������Ҫ�ƶ�λ�ã���<br><img src="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356945-554640047.png" alt="���������ͼƬ����"><br>����IDEA��<br>����֮�����½ǳ���������ʾ��˵����װ�ɹ���<br><img src="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356933-1194949242.png" alt="���������ͼƬ����"><br>����֮�⣬����ͨ��IDEA��װ����ķ�ʽ���ذ�װ��<br>��IDEA�д� File&gt;&gt;Settings&gt;&gt;Plugins&gt;&gt;Install plugins from disk��ѡ��zip����<br><img src="https://img2020.cnblogs.com/blog/2685873/202112/2685873-20211214205356922-816309275.png" alt="���������ͼƬ����"><br>ͬ���İ�װ��ɺ�������</p>
 
       
 
@@ -261,7 +234,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://blog.hcloud.work/2021/08/12/Java8%E5%BC%82%E6%AD%A5%E6%A1%86%E6%9E%B6%E4%B9%8BCompletableFuture/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://blog.hcloud.work/2021/12/16/IntelliJ%20IDEA%202021.2.1%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B%E3%80%81IDEA2021%E6%B0%B8%E4%B9%85%E7%A0%B4%E8%A7%A3%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%EF%BC%8C%E9%80%82%E7%94%A8JetBrains%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E7%A0%B4%E8%A7%A3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -275,18 +248,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/12/16/IntelliJ%20IDEA%202021.2.1%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B%E3%80%81IDEA2021%E6%B0%B8%E4%B9%85%E7%A0%B4%E8%A7%A3%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%EF%BC%8C%E9%80%82%E7%94%A8JetBrains%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%BF%80%E6%B4%BB%E7%A0%B4%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/08/05/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-Java%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java多线程与并发-Java中实现同步的方式</div>
+    <a href="/2021/08/12/Java8%E5%BC%82%E6%AD%A5%E6%A1%86%E6%9E%B6%E4%B9%8BCompletableFuture/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java8异步框架之CompletableFuture</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -313,7 +277,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-CompletableFuture"><span class="toc-number">1.</span> <span class="toc-text">1. CompletableFuture</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.</span> <span class="toc-text">2. 创建异步任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%AE%A1%E7%AE%97%E5%AE%8C%E6%88%90%E5%9B%9E%E8%B0%83"><span class="toc-number">4.</span> <span class="toc-text">3. 计算完成回调</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E4%B8%B2%E8%A1%8C%E5%8C%96"><span class="toc-number">5.</span> <span class="toc-text">4. 串行化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E7%BB%84%E5%90%88%E5%A4%84%E7%90%86"><span class="toc-number">6.</span> <span class="toc-text">5. 组合处理</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
